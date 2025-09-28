@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manual Interativo do Estagiário - Corsan/Aegea</title>
+<style>
+  :root { --cor-principal: #005A9C; --cor-sucesso: #155724; --cor-fundo-sucesso: #d4edda; --cor-erro: #721c24; --cor-fundo-erro: #f8d7da; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; line-height: 1.7; color: #333; background-color: #f8f9fa; margin: 0; padding: 20px; }
+  .container { max-width: 900px; margin: auto; background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+  .header { text-align: center; border-bottom: 3px solid var(--cor-principal); padding-bottom: 20px; margin-bottom: 25px; }
+  .header h1 { color: var(--cor-principal); margin: 0; font-size: 2.2em; }
+  .nav { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; }
+  .nav button { background-color: var(--cor-principal); color: white; border: none; padding: 12px 18px; border-radius: 8px; cursor: pointer; transition: all 0.3s ease; font-size: 16px; font-weight: 500; }
+  .nav button.active, .nav button:hover { background-color: #003d69; transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+  .module { display: none; animation: fadeIn 0.5s; }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  .module.active { display: block; }
+  h2 { color: var(--cor-principal); font-size: 1.8em; margin-top:0; }
+  h3 { font-size: 1.4em; color: #333; border-left: 5px solid var(--cor-principal); padding-left: 12px; margin-top: 35px; }
+  ul { padding-left: 20px; }
+  li { margin-bottom: 10px; }
+  .intro-text { font-size: 1.1em; color: #555; }
+  .quiz-container { background: #f8f9fa; padding: 25px; border-radius: 10px; margin-top: 30px; border: 1px solid #dee2e6; }
+  .question { margin-bottom: 25px; }
+  .options label { display: block; background: #fff; margin: 8px 0; padding: 12px 15px; border-radius: 8px; cursor: pointer; border: 1px solid #ccc; transition: all 0.2s ease-in-out; }
+  .options label:hover { border-color: var(--cor-principal); box-shadow: 0 2px 5px rgba(0,90,156,0.1); }
+  .options input[type="radio"] { display: none; }
+  .options input[type="radio"]:checked + span { font-weight: bold; color: var(--cor-principal); }
+  .hint { font-style: italic; color: #555; font-size: 0.95em; margin-top: 10px; padding: 10px; background: #e9ecef; border-radius: 5px; }
+  .quiz-footer { margin-top: 20px; }
+  .quiz-btn { background-color: #28a745; color: white; padding: 12px 25px; border: none; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: bold; transition: background-color 0.3s; }
+  .quiz-btn:disabled { background-color: #6c757d; cursor: not-allowed; }
+  .quiz-results { margin-top: 20px; font-weight: bold; font-size: 1.25em; padding: 18px; border-radius: 8px; text-align: center; }
+  .correct { background-color: var(--cor-fundo-sucesso); border: 1px solid var(--cor-sucesso); color: var(--cor-sucesso); }
+  .incorrect { background-color: var(--cor-fundo-erro); border: 1px solid var(--cor-erro); color: var(--cor-erro); }
+  .name-input-group { margin-bottom: 20px; }
+  .name-input-group label { font-weight: bold; margin-bottom: 8px; display: block; }
+  .name-input-group input { width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc; box-sizing: border-box; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>Manual Interativo do Estagiário</h1>
+    <p class="intro-text">Uma jornada de conhecimento pela Gerência de Cadastro Técnico da Corsan/Aegea.</p>
+  </div>
+  
+  <div class="name-input-group">
+    <label for="internName">Por favor, digite seu nome completo para começar:</label>
+    <input type="text" id="internName" placeholder="Seu nome aqui...">
+  </div>
+
+  <div class="nav">
+    <button onclick="showModule('day1')" class="active">Dia 1</button>
+    <button onclick="showModule('day2')">Dia 2</button>
+    <button onclick="showModule('day3')">Dia 3</button>
+    <button onclick="showModule('day4')">Dia 4</button>
+    <button onclick="showModule('day5')">Dia 5</button>
+  </div>
+
+  <div id="day1" class="module active">
+      <h2>Módulo 1: Fundamentos e Propósito</h2>
+      <p class="intro-text">Hoje, você entenderá o nosso lugar no saneamento do Brasil, a importância estratégica da nossa missão e como estamos estruturados para alcançar objetivos grandiosos.</p>
+
+      <h3>A Corsan/Aegea no Cenário Nacional</h3>
+      <p>A união da Corsan com a Aegea não foi um evento isolado. Ela se insere no contexto do <strong>Marco Legal do Saneamento</strong>, que busca atrair R$ 700 bilhões em investimentos para universalizar os serviços até 2033. A Aegea, como maior empresa privada do setor, opera em mais de 500 municípios e 13 estados, trazendo para o Rio Grande do Sul uma vasta experiência em eficiência operacional, tecnologia e capacidade de investimento. Nosso objetivo local é ambicioso: investir mais de R$ 15 bilhões para qualificar e ampliar os sistemas, com foco em reduzir as perdas de água de 40% para 25% e ampliar a cobertura de esgoto massivamente.</p>
+      
+      <h3>A Estrutura que Suporta a Operação</h3>
+      <p>A Diretoria de Operações, da qual o Cadastro Técnico faz parte, é o coração da empresa. Ela se divide em Superintendências Regionais, que gerenciam o dia a dia das cidades. O Cadastro Técnico atua como uma área de inteligência central, fornecendo a "planta baixa" da realidade para todas as equipes. Sem um cadastro preciso, uma equipe de manutenção demoraria horas para encontrar um vazamento, e um engenheiro não conseguiria planejar uma nova rede. <strong>Somos a base para a tomada de decisão operacional.</strong></p>
+
+      <div class="quiz-container">
+          <h3>Quiz do Dia 1: Teste seus Conhecimentos! (10 Perguntas)</h3>
+          <div id="quiz1">
+            </div>
+          <div class="quiz-footer">
+              <button class="quiz-btn" onclick="submitQuiz(1)">Finalizar e Salvar Pontuação</button>
+              <div id="quiz-results-1" class="quiz-results" style="display:none;"></div>
+          </div>
+      </div>
+  </div>
+
+  <div id="day2" class="module">
+      <h2>Módulo 2: A Linguagem dos Mapas Inteligentes</h2>
+      <p class="intro-text">Vamos aprofundar os conceitos de Geoprocessamento. Hoje você aprenderá não só "o que é", mas "por que" usamos cada tipo de dado e sistema de referência, e como isso afeta o dia a dia.</p>
+
+      <h3>Projeções Cartográficas: A Terra Plana no Computador</h3>
+      <p>O planeta é (quase) uma esfera. Para representá-lo em uma tela plana, usamos <strong>Projeções Cartográficas</strong>. Elas inevitavelmente causam distorções. Para trabalhos de engenharia de precisão, usamos um sistema de coordenadas planas, como o <strong>UTM (Universal Transversa de Mercator)</strong>. O Rio Grande do Sul, por exemplo, é coberto pelas zonas UTM 21 e 22. O sistema de referência <strong>SIRGAS 2000</strong> é o "datum" (a origem) sobre o qual essas projeções são calculadas, garantindo que um ponto medido em Uruguaiana "converse" perfeitamente com um ponto medido em Torres. Receber um projeto em um sistema de coordenadas antigo ou errado é um problema sério que exige um processo de transformação de dados antes de qualquer outra coisa.</p>
+      
+      <h3>Topologia: As Regras do Jogo Geográfico</h3>
+      <p>No GIS, a topologia define as regras de relacionamento espacial entre os objetos. Ela garante a integridade dos dados. Exemplos de regras topológicas em nosso cadastro:</p>
+      <ul>
+          <li>Redes de água (linhas) devem se conectar a outras redes ou válvulas (pontos) em seus nós (endpoints).</li>
+          <li>Um ramal de ligação (linha) deve se originar em uma rede de distribuição e terminar dentro de um lote (polígono).</li>
+          <li>Lotes (polígonos) não podem se sobrepor.</li>
+      </ul>
+      <p>Manter a topologia correta evita erros lógicos que poderiam levar a planejamentos desastrosos.</p>
+      
+      <div class="quiz-container">
+          <h3>Quiz do Dia 2: Teste seus Conhecimentos! (10 Perguntas)</h3>
+          <div id="quiz2">
+            </div>
+          <div class="quiz-footer">
+              <button class="quiz-btn" onclick="submitQuiz(2)">Finalizar e Salvar Pontuação</button>
+              <div id="quiz-results-2" class="quiz-results" style="display:none;"></div>
+          </div>
+      </div>
+  </div>
+  
+  <div id="day3" class="module">
+      <h2>Módulo 3: Dominando as Ferramentas e os Dados</h2>
+      <p class="intro-text">Vamos mergulhar na estrutura dos nossos dados e nas consultas que transformam um simples mapa em uma poderosa ferramenta de análise de negócios.</p>
+
+      <h3>O Coração do GIS: O Geodatabase</h3>
+      <p>Esqueça os arquivos soltos como os <em>shapefiles</em>. O padrão profissional é o <strong>Geodatabase</strong>, um contêiner de dados centralizado em um banco de dados (como SQL Server ou Oracle). Dentro dele, nossos dados se organizam em:</p>
+      <ul>
+        <li><strong>Feature Classes:</strong> São as camadas de dados (uma para hidrantes, uma para redes de água, etc.). Correspondem a tabelas com uma coluna espacial.</li>
+        <li><strong>Feature Datasets:</strong> Agrupam Feature Classes que compartilham o mesmo sistema de referência espacial. É aqui que definimos as regras de <strong>topologia</strong>.</li>
+        <li><strong>Domínios e Subtipos:</strong> Ferramentas para garantir a qualidade dos dados. Um <strong>domínio</strong>, por exemplo, pode criar uma lista pré-definida para o campo "material" (só permitindo valores como 'PVC', 'Ferro Fundido', 'PEAD'), evitando erros de digitação.</li>
+      </ul>
+
+      <h3>Consultas Espaciais: Fazendo Perguntas ao Mapa</h3>
+      <p>A verdadeira força do GIS está na capacidade de fazer perguntas complexas que cruzam dados tabulares e espaciais. Uma consulta (ou <em>query</em>) é um filtro aplicado aos dados. No dia a dia, usamos consultas para responder perguntas como:</p>
+      <ul>
+        <li>"Selecione todas as redes de fibrocimento (material) com diâmetro inferior a 100mm (dado tabular) que estejam dentro do bairro X (localização)."</li>
+        <li>"Encontre todos os clientes (pontos) que estão a menos de 50 metros de uma rede de esgoto recém-instalada (análise de proximidade/buffer) e que ainda não estão conectados."</li>
+      </ul>
+      <p>Essas consultas são a base para relatórios, planejamentos e identificação de oportunidades comerciais.</p>
+
+      <div class="quiz-container">
+          <h3>Quiz do Dia 3: Teste seus Conhecimentos! (10 Perguntas)</h3>
+          <div id="quiz3">
+            </div>
+          <div class="quiz-footer">
+              <button class="quiz-btn" onclick="submitQuiz(3)">Finalizar e Salvar Pontuação</button>
+              <div id="quiz-results-3" class="quiz-results" style="display:none;"></div>
+          </div>
+      </div>
+  </div>
+
+  <div id="day4" class="module">
+      <h2>Módulo 4: A Anatomia da Operação de Campo</h2>
+      <p class="intro-text">Hoje vamos conectar o mundo digital do GIS com a realidade física das ruas. Como o nosso cadastro impacta diretamente a manutenção, a eficiência e a segurança das operações.</p>
+
+      <h3>O "As-Built" como Documento de Inteligência</h3>
+      <p>O "As-Built" (Como Construído) é muito mais que um desenho. É o registro oficial e final de um ativo que foi para o subsolo. Um As-Built de qualidade deve conter não apenas as coordenadas precisas, mas também informações cruciais para a operação futura: profundidade da vala, material utilizado, marca e modelo de válvulas, número de série de hidrômetros, e fotos da instalação. Quando uma equipe precisa fazer um reparo 10 anos depois, é o As-Built no nosso sistema que dirá a eles exatamente o que esperar, evitando escavações desnecessárias e reduzindo o tempo de interrupção do serviço para o cliente.</p>
+
+      <h3>Zonas de Pressão e VRPs: A Gestão da Água</h3>
+      <p>Uma cidade não é abastecida por uma única "grande torneira". O sistema é dividido em <strong>Zonas de Pressão</strong>, que são áreas geograficamente delimitadas onde a pressão da água é controlada para garantir que chegue com força suficiente nos locais altos sem estourar a tubulação nos locais baixos. Essa gestão é feita por <strong>VRPs (Válvulas Redutoras de Pressão)</strong>, que são ativos estratégicos em nosso cadastro. Mapear e entender as zonas de pressão é fundamental para o combate a vazamentos, pois uma pressão muito alta na rede é uma das principais causas de rompimentos.</p>
+
+      <div class="quiz-container">
+          <h3>Quiz do Dia 4: Teste seus Conhecimentos! (10 Perguntas)</h3>
+          <div id="quiz4">
+            </div>
+          <div class="quiz-footer">
+              <button class="quiz-btn" onclick="submitQuiz(4)">Finalizar e Salvar Pontuação</button>
+              <div id="quiz-results-4" class="quiz-results" style="display:none;"></div>
+          </div>
+      </div>
+  </div>
+
+  <div id="day5" class="module">
+      <h2>Módulo 5: O Fluxo de Trabalho na Prática</h2>
+      <p class="intro-text">Vamos unir todo o conhecimento em um estudo de caso prático. Hoje você simulará o processo completo de uma demanda real, do recebimento do projeto à publicação do mapa atualizado.</p>
+
+      <h3>Estudo de Caso: Atendendo um Novo Condomínio</h3>
+      <p><strong>A Demanda:</strong> A Diretoria de Expansão aprova a ligação de um novo condomínio residencial. A construtora envia o projeto da rede interna em formato `.dwg` (AutoCAD) e o levantamento topográfico em `.txt` com as coordenadas dos pontos notáveis (curvas, válvulas, etc.). Sua tarefa é integrar essa nova infraestrutura ao cadastro GIS corporativo.</p>
+      <p><strong>Seu Fluxo de Trabalho:</strong></p>
+      <ol>
+        <li><strong>Análise e Validação (Pré-processamento):</strong> Você abre os arquivos e verifica: O sistema de coordenadas do levantamento é SIRGAS 2000? O desenho está "limpo" (sem layers desnecessárias)? As informações fazem sentido?</li>
+        <li><strong>Digitalização e Edição (Trabalho no ArcGIS Pro):</strong> Você inicia uma sessão de edição no Geodatabase. Usando o desenho como referência (georreferenciado), você digitaliza as novas redes, válvulas e ramais nas <em>feature classes</em> corretas. Você "snapa" (conecta) as novas redes à rede de distribuição existente, garantindo a <strong>conectividade topológica</strong>.</li>
+        <li><strong>Atribuição de Dados Tabulares (Inteligência):</strong> Com os objetos criados, você preenche a tabela de atributos para cada um: material, diâmetro, data de instalação (informações vindas do memorial descritivo do projeto). Você utiliza os <strong>domínios</strong> pré-configurados para evitar erros.</li>
+        <li><strong>Controle de Qualidade (QA/QC):</strong> Você roda as regras de topologia para garantir que não há erros (ex: linhas sobrepostas). Você confere visualmente se o resultado corresponde ao projeto As-Built.</li>
+        <li><strong>Publicação e Finalização:</strong> Após salvar as edições, os dados atualizados ficam instantaneamente disponíveis para toda a companhia, seja via ArcGIS Pro para outros analistas ou via Portal WebGIS para as equipes de campo e gestores.</li>
+      </ol>
+      <p>Este fluxo garante que nosso cadastro seja um reflexo fiel e confiável da realidade em campo.</p>
+
+      <div class="quiz-container">
+          <h3>Quiz do Dia 5: Teste seus Conhecimentos! (10 Perguntas)</h3>
+          <div id="quiz5">
+            </div>
+          <div class="quiz-footer">
+              <button class="quiz-btn" onclick="submitQuiz(5)">Finalizar e Salvar Pontuação</button>
+              <div id="quiz-results-5" class="quiz-results" style="display:none;"></div>
+          </div>
+      </div>
+  </div>
+
+</div>
+
+<script>
+// Objeto para armazenar todas as perguntas e respostas
+const quizzes = {
+    1: {
+        title: "Módulo 1",
+        questions: [
+            { q: "Qual o principal objetivo do Marco Legal do Saneamento?", o: ["Reduzir o preço da conta de água.", "Universalizar o saneamento até 2033.", "Construir mais escritórios da empresa."], a: 1, h: "Lembre-se das metas com porcentagens e do prazo final." },
+            { q: "O que a redução de perdas de água, de 40% para 25%, representa na prática?", o: ["Apenas uma meta interna sem impacto.", "Uma melhoria na eficiência operacional e sustentabilidade.", "Um aumento na conta de água para compensar."], a: 1, h: "Perder água tratada é perder recursos e dinheiro." },
+            { q: "A Gerência de Cadastro Técnico fornece suporte primário para qual diretoria?", o: ["Diretoria Financeira", "Diretoria de Marketing", "Diretoria de Operações"], a: 2, h: "Nossas informações são cruciais para quem trabalha na rua." },
+            { q: "O que significa 'universalizar o esgotamento sanitário'?", o: ["Garantir que todos tenham um banheiro.", "Garantir que 90% da população tenha acesso à coleta e tratamento de esgoto.", "Distribuir panfletos sobre saneamento."], a: 1, h: "É uma das duas metas principais do Marco Legal." },
+            { q: "Por que a experiência da Aegea em outros estados é valiosa para a Corsan?", o: ["Porque eles podem trazer funcionários de outros estados.", "Porque eles já enfrentaram e resolveram problemas operacionais semelhantes.", "Porque eles conhecem o clima de outras regiões."], a: 1, h: "A experiência em operações traz conhecimento e agilidade." },
+            { q: "Onde acontece o processo que torna a água da natureza segura para o consumo?", o: ["Na ETE (Estação de Tratamento de Esgoto)", "Na ETA (Estação de Tratamento de Água)", "Nos reservatórios da cidade"], a: 1, h: "Água limpa 'entra' na ETA, esgoto sujo 'entra' na ETE." },
+            { q: "Qual a importância de um cadastro técnico preciso para a área financeira?", o: ["Nenhuma, são áreas separadas.", "Ajuda a calcular o valor dos ativos da empresa (redes enterradas).", "Ajuda a imprimir as contas de água."], a: 1, h: "Tudo o que está enterrado tem um valor." },
+            { q: "O que é um 'manancial'?", o: ["Uma caixa d'água grande.", "O corpo d'água (rio, lagoa) de onde a água é captada.", "O cano principal de uma rua."], a: 1, h: "É a origem de toda a nossa matéria-prima." },
+            { q: "A meta de 99% do Marco Legal se refere a quê?", o: ["Satisfação do cliente", "Coleta e tratamento de esgoto", "Acesso à água potável"], a: 2, h: "Esta é a meta para a água que bebemos." },
+            { q: "Por que a agilidade é um fator importante mencionado na parceria Corsan/Aegea?", o: ["Para terminar o trabalho mais rápido e ir para casa.", "Porque o prazo de 2033 do Marco Legal é desafiador e exige rapidez nos investimentos.", "Para competir com outras empresas de água."], a: 1, h: "O tempo para atingir as metas é curto." }
+        ]
+    },
+    2: {
+        title: "Módulo 2",
+        questions: [
+            { q: "Para representar a área de um bairro afetado por uma manutenção, qual tipo de dado vetorial é o ideal?", o: ["Ponto", "Linha", "Polígono"], a: 2, h: "Precisamos representar uma área delimitada." },
+            { q: "Qual é o datum (sistema de referência) oficial do Brasil, garantindo a padronização nacional?", o: ["WGS 84", "SIRGAS 2000", "Córrego Alegre"], a: 1, h: "É o sistema geocêntrico para as Américas." },
+            { q: "Uma regra topológica que impede que lotes se sobreponham garante qual aspecto da base de dados?", o: ["A beleza do mapa.", "A integridade e a lógica dos dados.", "A velocidade do computador."], a: 1, h: "Topologia serve para evitar erros lógicos." },
+            { q: "Você recebe um projeto antigo com coordenadas em SAD69. O que deve ser feito antes de integrá-lo ao nosso sistema SIRGAS 2000?", o: ["Redesenhar tudo do zero.", "Realizar uma transformação de coordenadas.", "Ignorar a diferença, pois é pequena."], a: 1, h: "Sistemas diferentes não se alinham sem uma conversão matemática." },
+            { q: "O que é um metadado?", o: ["Um tipo especial de dado geográfico.", "Um dado sobre o próprio dado (data de criação, autor, etc.).", "Um erro na base de dados."], a: 1, h: "É a 'etiqueta' ou 'RG' da informação." },
+            { q: "Para que serve a projeção UTM?", o: ["Para ver o globo terrestre em 3D.", "Para representar a superfície curva da Terra em um plano, permitindo medições em metros.", "Para criar gráficos e planilhas."], a: 1, h: "É a base para trabalhos de engenharia com coordenadas planas." },
+            { q: "Qual elemento vetorial seria usado para cadastrar a posição exata de cada hidrante?", o: ["Ponto", "Linha", "Polígono"], a: 0, h: "Representa uma localização única, sem dimensão de área ou comprimento." },
+            { q: "Uma imagem de satélite de alta resolução é um exemplo de qual tipo de dado?", o: ["Vetorial", "Matricial (Raster)", "Tabular"], a: 1, h: "É composta por uma grade de pixels." },
+            { q: "A regra 'uma rede deve estar conectada a outra em um nó' é um exemplo de:", o: ["Estilo de mapa", "Regra de Topologia", "Configuração de software"], a: 1, h: "Define o relacionamento espacial entre os objetos." },
+            { q: "Por que a padronização em SIRGAS 2000 é crucial para uma empresa que atua em todo o estado?", o: ["Porque é um nome bonito.", "Para garantir que os dados de todas as cidades sejam compatíveis e possam ser integrados.", "Porque é exigido apenas pela capital."], a: 1, h: "Pense em um quebra-cabeça onde todas as peças devem se encaixar." }
+        ]
+    },
+    3: {
+        title: "Módulo 3",
+        questions: [
+            { q: "Qual a principal vantagem de um Geodatabase corporativo sobre arquivos shapefile?", o: ["Shapefiles são mais coloridos.", "O Geodatabase permite acesso multiusuário, controle de qualidade e maior segurança.", "Shapefiles são mais fáceis de perder."], a: 1, h: "Pense em colaboração, segurança e regras." },
+            { q: "O que é um 'Domínio' em um Geodatabase?", o: ["A área de atuação da empresa.", "Uma regra que restringe os valores de um campo a uma lista pré-definida.", "O nome do administrador do banco de dados."], a: 1, h: "Serve para evitar erros de digitação e padronizar a entrada de dados." },
+            { q: "A pergunta 'Encontre todos os hidrantes a menos de 100m de uma escola' é um exemplo de:", o: ["Consulta de atributos", "Análise de Proximidade (Buffer)", "Edição de dados"], a: 1, h: "Estamos criando uma 'zona de influência' ao redor dos hidrantes." },
+            { q: "Para que serve um 'Feature Dataset'?", o: ["Para guardar as imagens do mapa.", "Para agrupar Feature Classes que compartilharão regras de topologia.", "Para desenhar os logotipos da empresa."], a: 1, h: "É um agrupador lógico para dados que se relacionam espacialmente." },
+            { q: "No GIS, o que são 'atributos'?", o: ["As cores e símbolos do mapa.", "As informações tabulares (texto, números, datas) associadas a cada objeto geográfico.", "A licença do software."], a: 1, h: "São as colunas da tabela ligada à geometria." },
+            { q: "Qual ferramenta é mais adequada para fazer o desenho técnico de uma peça de uma bomba, com precisão milimétrica?", o: ["ArcGIS Pro (GIS)", "AutoCAD (CAD)", "PowerPoint"], a: 1, h: "GIS é para análise espacial, CAD é para desenho de precisão." },
+            { q: "O que é uma 'Feature Class'?", o: ["Uma aula sobre o software.", "Uma coleção de objetos geográficos do mesmo tipo (pontos, linhas ou polígonos).", "O estilo de fonte usado no mapa."], a: 1, h: "É a camada fundamental de dados em um Geodatabase." },
+            { q: "Se você precisa encontrar todas as redes instaladas antes de 1980, que tipo de consulta fará?", o: ["Consulta Espacial", "Consulta por Atributos", "Consulta por Cor"], a: 1, h: "A data de instalação é um dado tabular (atributo)." },
+            { q: "Por que um 'Subtipo' é útil no cadastro de hidrômetros?", o: ["Para deixar o mapa mais lento.", "Para aplicar regras diferentes para diferentes tipos de hidrômetros (residenciais vs. industriais).", "Para mudar a cor do ícone."], a: 1, h: "Permite categorizar e aplicar regras específicas dentro de uma mesma camada." },
+            { q: "Qual a principal diferença de inteligência entre um objeto em CAD e um em GIS?", o: ["O objeto em CAD é sempre 3D.", "O objeto em GIS está conectado a uma base de dados (atributos), enquanto o de CAD é apenas geometria.", "O objeto em GIS é sempre azul."], a: 1, h: "GIS conecta o 'onde' com o 'o quê'." }
+        ]
+    },
+    4: {
+        title: "Módulo 4",
+        questions: [
+            { q: "Qual a principal função de uma VRP (Válvula Redutora de Pressão)?", o: ["Aumentar a pressão da água na rede.", "Controlar e reduzir a pressão da água em uma Zona de Pressão.", "Medir o consumo de água do bairro."], a: 1, h: "O nome já diz tudo: ela reduz a pressão." },
+            { q: "Por que a informação de 'profundidade da instalação' em um As-Built é vital para uma equipe de manutenção?", o: ["Para saber o quão bonito o cano é.", "Para evitar acidentes e saber onde e o quão fundo escavar.", "Para calcular a conta de água."], a: 1, h: "Segurança e eficiência na escavação são cruciais." },
+            { q: "Um prédio com 20 apartamentos e uma única entrada de água da rua possui:", o: ["20 ligações e 1 economia.", "1 ligação e 1 economia.", "1 ligação e 20 economias."], a: 2, h: "Ligação é a conexão física; economia é a unidade de consumo." },
+            { q: "O que é uma 'Zona de Pressão'?", o: ["Uma área da cidade onde os moradores estão sob pressão.", "Uma área geograficamente delimitada onde a pressão da água é gerenciada.", "O local onde fica a sede da empresa."], a: 1, h: "É uma divisão técnica da rede de abastecimento." },
+            { q: "Qual é o principal objetivo do documento 'As-Built'?", o: ["Ser um rascunho inicial do projeto.", "Representar fielmente como a infraestrutura foi construída na realidade.", "Ser um contrato com o cliente."], a: 1, h: "É o registro final do que está no subsolo." },
+            { q: "Uma pressão muito alta na rede pode causar qual problema principal?", o: ["A água fica mais limpa.", "Um aumento no número de rompimentos e vazamentos.", "A água chega mais devagar nas casas."], a: 1, h: "A tubulação tem um limite de resistência." },
+            { q: "Qual o nome da tubulação que conecta a rede da rua ao hidrômetro do cliente?", o: ["Adutora", "Rede Coletora de Esgoto", "Ramal Predial de Ligação"], a: 2, h: "É a última parte do caminho da água até o imóvel." },
+            { q: "A informação sobre a 'marca e modelo' de uma válvula no cadastro é útil para quê?", o: ["Para fins de curiosidade.", "Para que a equipe de manutenção leve as ferramentas e peças de reposição corretas.", "Para saber a cor da válvula."], a: 1, h: "Saber o modelo exato economiza tempo e viagens." },
+            { q: "Um cadastro preciso de Zonas de Pressão e VRPs ajuda diretamente a:", o: ["Contratar novos funcionários.", "Combater as perdas de água.", "Escolher a cor da frota de veículos."], a: 1, h: "Gerenciar a pressão é uma das principais estratégias contra perdas." },
+            { q: "Se um As-Built não é entregue ou é feito de forma incorreta, qual o principal risco?", o: ["O cliente fica feliz.", "A empresa pode causar danos a outras redes (gás, fibra ótica) em futuras manutenções.", "A empresa economiza dinheiro."], a: 1, h: "O cadastro incorreto leva a escavações 'às cegas'." }
+        ]
+    },
+    5: {
+        title: "Módulo 5",
+        questions: [
+            { q: "No estudo de caso, qual a primeira validação a ser feita nos arquivos recebidos da construtora?", o: ["Verificar a cor das linhas no AutoCAD.", "Verificar se o sistema de coordenadas está correto (SIRGAS 2000).", "Verificar o logo da construtora."], a: 1, h: "A localização correta é o pilar de todo o trabalho." },
+            { q: "O que é 'snapping' (ou 'snapar') no processo de digitalização?", o: ["Tirar uma foto da tela.", "A ação de conectar precisamente um novo objeto a um nó ou vértice de um objeto existente.", "Desenhar rapidamente sem precisão."], a: 1, h: "Garante a conectividade da rede." },
+            { q: "Por que usar 'domínios' ao preencher os atributos da nova rede é uma boa prática?", o: ["Porque deixa o processo mais demorado.", "Para garantir a consistência e evitar erros de digitação (ex: 'PVC' vs 'pvc').", "Porque é uma função paga do software."], a: 1, h: "É uma ferramenta de controle de qualidade na entrada de dados." },
+            { q: "O que significa rodar as 'regras de topologia' após a digitalização?", o: ["Verificar a ortografia dos textos no mapa.", "Fazer um controle de qualidade automático que busca por erros lógicos (ex: linhas que não se conectam).", "Calcular a área total do condomínio."], a: 1, h: "É a etapa de verificação da integridade espacial dos dados." },
+            { q: "Depois que você salva as edições no Geodatabase corporativo, quem pode ver as atualizações?", o: ["Apenas você e seu gestor.", "Ninguém, fica salvo localmente.", "Toda a companhia com acesso ao sistema, quase que instantaneamente."], a: 2, h: "Essa é a vantagem de um sistema centralizado." },
+            { q: "Qual o objetivo da etapa de 'Atribuição de Dados Tabulares'?", o: ["Apenas colorir o mapa.", "Associar informações (material, diâmetro, etc.) às geometrias recém-criadas.", "Apagar as linhas do AutoCAD."], a: 1, h: "É a etapa que dá 'inteligência' aos desenhos." },
+            { q: "Se o levantamento topográfico viesse sem um sistema de coordenadas definido, qual seria o maior problema?", o: ["O mapa ficaria feio.", "Seria impossível posicionar o novo condomínio corretamente no mapa da cidade.", "O computador ficaria mais lento."], a: 1, h: "Sem referência, o dado 'flutua' no espaço." },
+            { q: "Qual a diferença entre o arquivo `.dwg` e as `Feature Classes` do GIS após o trabalho?", o: ["Nenhuma, são a mesma coisa.", "O .dwg é um desenho, as Feature Classes são dados inteligentes com atributos e regras.", "As Feature Classes são mais leves."], a: 1, h: "É a transformação de um desenho estático em um dado dinâmico." },
+            { q: "O que significa QA/QC no fluxo de trabalho?", o: ["Pergunta e Resposta Rápida", "Qualidade Assegurada / Controle de Qualidade", "Arquivo Rápido / Cópia Rápida"], a: 1, h: "É a sigla em inglês para a etapa de verificação e validação." },
+            { q: "Por que a publicação no Portal WebGIS é um passo importante?", o: ["Porque é a única forma de salvar o trabalho.", "Porque democratiza o acesso à informação para equipes de campo e gestores que não usam o ArcGIS Pro.", "Porque gera um PDF automaticamente."], a: 1, h: "Leva a informação para quem mais precisa, de forma simples." }
+        ]
+    }
+};
+
+// const GOOGLE_FORM_ACTION_URL = 'COLE_A_SUA_URL_DE_AÇÃO_AQUI'; 
+const NOME_ENTRY_ID = 'entry.xxxxxxxxxx'; // Substitua pelo ID do campo "Nome"
+const MODULO_ENTRY_ID = 'entry.xxxxxxxxxx'; // Substitua pelo ID do campo "Módulo"
+const PONTUACAO_ENTRY_ID = 'entry.xxxxxxxxxx'; // Substitua pelo ID do campo "Pontuação"
+// function showModule(moduleId) {
+  document.querySelectorAll('.module').forEach(m => m.classList.remove('active'));
+  document.getElementById(moduleId).classList.add('active');
+  document.querySelectorAll('.nav button').forEach(b => {
+    b.classList.remove('active');
+    if (b.getAttribute('onclick') === `showModule('${moduleId}')`) {
+      b.classList.add('active');
+    }
+  });
+}
+
+function generateQuiz(quizNumber) {
+    const quizData = quizzes[quizNumber];
+    const quizContainer = document.getElementById(`quiz${quizNumber}`);
+    let html = '';
+    quizData.questions.forEach((item, index) => {
+        const qId = `q${quizNumber}_${index}`;
+        html += `<div class="question">
+                    <p><strong>${index + 1}.</strong> ${item.q}</p>
+                    <div class="options">`;
+        item.o.forEach((option, oIndex) => {
+            html += `<label><input type="radio" name="${qId}" value="${oIndex}"> <span>${option}</span></label>`;
+        });
+        html += `</div><p class="hint"><strong>Dica:</strong> ${item.h}</p></div>`;
+    });
+    quizContainer.innerHTML = html;
+}
+
+async function submitQuiz(quizNumber) {
+    const internName = document.getElementById('internName').value;
+    if (!internName.trim()) {
+        alert('Por favor, digite seu nome completo antes de enviar o quiz.');
+        document.getElementById('internName').focus();
+        return;
+    }
+
+    const quizData = quizzes[quizNumber];
+    let score = 0;
+    let allAnswered = true;
+
+    quizData.questions.forEach((item, index) => {
+        const qId = `q${quizNumber}_${index}`;
+        const selected = document.querySelector(`input[name="${qId}"]:checked`);
+        if (selected) {
+            const parentLabel = selected.parentElement;
+            if (parseInt(selected.value) === item.a) {
+                score++;
+                parentLabel.style.border = '2px solid var(--cor-sucesso)';
+                parentLabel.style.backgroundColor = 'var(--cor-fundo-sucesso)';
+            } else {
+                parentLabel.style.border = '2px solid var(--cor-erro)';
+                parentLabel.style.backgroundColor = 'var(--cor-fundo-erro)';
+            }
+        } else {
+            allAnswered = false;
+        }
+    });
+
+    const resultsDiv = document.getElementById(`quiz-results-${quizNumber}`);
+    if (!allAnswered) {
+        resultsDiv.innerHTML = "Atenção: Por favor, responda todas as perguntas.";
+        resultsDiv.className = 'quiz-results incorrect';
+        resultsDiv.style.display = 'block';
+        return;
+    }
+
+    const totalQuestions = quizData.questions.length;
+    const percentage = Math.round((score / totalQuestions) * 100);
+    resultsDiv.innerHTML = `Sua pontuação final foi: ${score} de ${totalQuestions} (${percentage}%)`;
+    resultsDiv.className = percentage >= 70 ? 'quiz-results correct' : 'quiz-results incorrect';
+    resultsDiv.style.display = 'block';
+
+    // Desabilitar tudo
+    const quizContainer = document.getElementById(`quiz${quizNumber}`);
+    quizContainer.querySelectorAll('input[type="radio"]').forEach(input => input.disabled = true);
+    document.querySelector(`#day${quizNumber} .quiz-btn`).disabled = true;
+
+    // Enviar dados para o Google Forms
+    const formData = new FormData();
+    formData.append(NOME_ENTRY_ID, internName);
+    formData.append(MODULO_ENTRY_ID, quizData.title);
+    formData.append(PONTUACAO_ENTRY_ID, `${percentage}%`);
+    
+    try {
+        await fetch(GOOGLE_FORM_ACTION_URL, {
+            method: 'POST',
+            mode: 'no-cors', // Importante para evitar erro de CORS
+            body: formData
+        });
+        console.log('Pontuação enviada com sucesso!');
+    } catch (error) {
+        console.error('Erro ao enviar pontuação:', error);
+        resultsDiv.innerHTML += '<br><small>Erro ao salvar a pontuação. Por favor, avise seu gestor.</small>';
+    }
+}
+
+// Gerar todos os quizzes quando a página carregar
+document.addEventListener('DOMContentLoaded', () => {
+    for (const quizId in quizzes) {
+        generateQuiz(quizId);
+    }
+});
+</script>
+</body>
+</html>
